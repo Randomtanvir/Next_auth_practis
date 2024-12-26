@@ -1,13 +1,13 @@
 import Header from "@/components/Header";
-import LoginForm from "@/components/LoginForm";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center h-[70vh]">
-        <LoginForm />
-      </div>
+      <Link className="flex justify-center mt-6" href="/login">
+        Login
+      </Link>
     </>
   );
 }
