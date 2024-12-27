@@ -25,25 +25,23 @@ export const {
         password: {},
       },
       async authorize(credentials) {
-        console.log(credentials);
         if (credentials === null) return null;
-        console.log(credentials.email);
         await dbConnect();
         try {
-          const user = await userModel.findOne({ email: credentials.email });
+          const user = await userModel.findOne({ email: credentials?.email });
           if (user) {
-            console.log(user);
-            const isMatch = user.password === credentials.password;
+            const isMatch = user?.password === credentials.password;
+
             if (isMatch) {
               return user;
             } else {
-              return { error: true, message: "Email or pass not valid" };
+              throw new Error("Email or Password is not correct");
             }
           } else {
-            return { error: true, message: "user not found" };
+            throw new Error("User not found");
           }
         } catch (error) {
-          return { error: true, message: "error" };
+          throw new Error(error);
         }
       },
     }),

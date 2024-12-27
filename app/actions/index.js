@@ -15,8 +15,13 @@ export async function login(formData) {
       password: formData.get("password"),
       redirect: false,
     });
-    return response;
-  } catch (err) {
-    throw err;
+    console.log(response);
+    if (response.error) {
+      return { error: true, message: response.message || "email not found" };
+    } else {
+      return response;
+    }
+  } catch (error) {
+    return { error: true, message: error.message || "Email not valid" };
   }
 }

@@ -14,14 +14,11 @@ const LoginForm = () => {
       const response = await login(formData);
 
       if (response.error) {
-        console.error(response.error);
-        console.error(response.message);
-        setError(response.error.message);
+        setError(response.message);
       } else {
         router.push("/");
       }
     } catch (e) {
-      console.error(e);
       setError(e.message || "Check your Credentials");
     }
   };
@@ -39,7 +36,7 @@ const LoginForm = () => {
         placeholder="Password"
         className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
       />
-      <div>{error}</div>
+      <div className="text-red-500">{error}</div>
       <button
         type="submit"
         className="text-sm px-4 py-2 bg-blue-600 text-white rounded-[45%] text-center"

@@ -4,7 +4,6 @@ import Signin from "./Signin";
 import SignOut from "./SignOut";
 const Header = async () => {
   const secction = await auth();
-  console.log(secction);
 
   return (
     <div className="flex gap-4 justify-center mt-6">
